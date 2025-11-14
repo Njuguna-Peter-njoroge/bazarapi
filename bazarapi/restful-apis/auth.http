@@ -1,0 +1,27 @@
+
+###hellox
+GET http://localhost:3000/app/hi;
+
+### hi
+POST http://localhost:3000/api/v1/users
+
+
+###signup
+POST http://localhost:3000/api/users/signup
+Content-Type: application/json
+
+{
+  "name": "John peter Doe",
+  "email": "john23444@example.com",
+  "password": "securepassword123"
+}
+
+###signin
+POST http://localhost:3000/api/users/signin
+Content-Type: application/json
+
+{
+  "email": "john23444@example.com",
+  "password": "securepassword123"
+
+}
