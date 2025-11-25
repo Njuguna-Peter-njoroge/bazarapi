@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -31,7 +35,9 @@ export class UsersService {
     return 'This action adds a new user';
   }
 
-  async signin(userSigninDto: UserSigninDto) {
+  async signin(
+    userSigninDto: UserSigninDto,
+  ): Promise<{ accessToken: string; user: Omit<UserEntity, 'password'> }> {
     const userExist = await this.usersRepository
       .createQueryBuilder('users')
       .addSelect('users.password')
@@ -46,16 +52,24 @@ export class UsersService {
       userExist.password,
     );
     if (!matchPassword) throw new BadRequestException('passwords do not match');
+
     const { password, ...safeUser } = userExist;
-    return { user: safeUser };
+
+    const accessToken = this.accessToken(safeUser);
+
+    return { user: safeUser, accessToken };
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll(): Promise<UserEntity[]> {
+    return await this.usersRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number): Promise<UserEntity> {
+    const user = await this.usersRepository.findOneBy({ id });
+    if (!user) {
+      throw new NotFoundException('user not found');
+    }
+    return user;
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
@@ -69,22 +83,40 @@ export class UsersService {
   async findUserByEmail(email: string) {
     return this.usersRepository.findOneBy({ email });
   }
-  // accessToken(user: Omit<UserEntity, 'password'>) {
-  //   const secret = process.env.ACCESS_TOKEN_SECRET_KEY;
-  //   const expires = process.env.ACCESS_TOKEN_EXPIRE_TIME || '1h';
-  //
-  //   if (!secret) {
-  //     throw new Error(
-  //       'ACCESS_TOKEN_SECRET_KEY is missing in environment variables',
-  //     );
-  //   }
-  //
-  //   return jwt.sign(
-  //     { id: user.id, email: user.email },
-  //     secret,
-  //     {
-  //       expiresIn: expires,
-  //   });
-  // }
 
+  //
+  // async accessToken(user: UserEntity):Promise<string> {
+  //   return jwt.sign(
+  //     {
+  //       id: user.id,
+  //       email: user.email,
+  //     },
+  //     process.env.ACCESS_TOKEN_SECRET_KEY,
+  //     { expiresIn: process.env.ACCESS_TOKEN_EXPIRES_TIME });
+  // }
+  accessToken(user: Pick<UserEntity, 'id' | 'email'>): string {
+    const secret = process.env.ACCESS_TOKEN_SECRET_KEY;
+
+    if (!secret) {
+      throw new Error('ACCESS_TOKEN_SECRET_KEY is missing');
+    }
+
+    const envExpire = process.env.ACCESS_TOKEN_EXPIRES_TIME;
+    let expiresIn: jwt.SignOptions['expiresIn'];
+
+    if (!envExpire) {
+      expiresIn = '1h';
+    } else if (/^\d+$/.test(envExpire)) {
+      expiresIn = Number(envExpire);
+    } else {
+      expiresIn = envExpire as jwt.SignOptions['expiresIn'];
+    }
+
+    const payload = {
+      id: user.id,
+      email: user.email,
+    };
+
+    return jwt.sign(payload, secret, { expiresIn });
   }
+}

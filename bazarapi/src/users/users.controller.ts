@@ -5,13 +5,18 @@ import {
   Body,
   Patch,
   Param,
-  Delete,
+  Delete, UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserEntity } from './entities/user.entity';
 import { UserSignUpDto } from './dto/user-signup.dto';
 import { UserSigninDto } from './dto/user-signin.dto';
+import { currentUser } from '../Utility/Decorators/current-user.decotatoer';
+import { AuthenticationGuard } from '../Utility/Guards/auth-guard';
+import { AuthorizeRoles } from '../Utility/Decorators/authorize.roles.decorator';
+import { Roles } from '../Utility/common/user-roles.enum';
+import { AuthorizeGuard } from '../Utility/Guards/authorization.guard';
 
 @Controller('users')
 export class UsersController {
@@ -26,23 +31,24 @@ export class UsersController {
 
   @Post('signin')
   async sign(@Body() userSigninDto: UserSigninDto) {
-    const user = await this.usersService.signin(userSigninDto);
-    // const accessToken = await this.usersService.accessToken(user.user);
-    // return { accessToken, user };
-    return await this.usersService.signin(userSigninDto);
+    const { user } = await this.usersService.signin(userSigninDto);
+    const accessToken = this.usersService.accessToken(user);
+    return { user, accessToken };
   }
+
   create() {
     // return this.usersService.create(createUserDto);
 
     return 'hi';
   }
-
-  @Get()
-  findAll() {
-    return this.usersService.findAll();
+@AuthorizeRoles(Roles.ADMIN)
+  @UseGuards(AuthenticationGuard, AuthorizeGuard)
+  @Get('all')
+  async findAll(): Promise<UserEntity[]> {
+    return await this.usersService.findAll();
   }
 
-  @Get(':id')
+  @Get('single/:id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
   }
@@ -56,4 +62,12 @@ export class UsersController {
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }
+
+  @UseGuards(AuthenticationGuard)
+  @Get('me')
+  getProfile(@currentUser() currentUser: UserEntity) {
+    return currentUser;
+  }
+
+
 }
