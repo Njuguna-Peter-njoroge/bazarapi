@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable prettier/prettier */
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { orderStatus } from "../ENUMS/order-status.enum";
 import { UserEntity } from "src/users/entities/user.entity";
 import { ShippingEntity } from "./shipping.entity";
@@ -16,7 +16,7 @@ export class OrderEntity {
       orderAt:Date;
 
       @Column({type:'enum',enum:orderStatus,default:orderStatus.PROCESSING})
-      status:string;
+      status:orderStatus;
 
       @Column({nullable:true})
       shippedAt:Date;

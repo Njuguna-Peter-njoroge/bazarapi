@@ -4,7 +4,7 @@
 ###create order 
 POST http://localhost:3000/api/orders
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjYwNDM2NjgsImV4cCI6MTc2NjA1MDg2OH0.jrj0hax-DFBp-kRLfP_1yDwM2Z9n-peQh_CMkhpceCs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjYwNTI5OTksImV4cCI6MTc2NjA2MDE5OX0.CV3M6oBxJuu4dBlKui61dOEK7GH0U5fKwfe9t8rUZSE
 
 
 {
@@ -36,4 +36,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsI
                   "product_quantity": 2
             }
       ]
+}
+
+###find all
+GET  http://localhost:3000/api/orders
+Content-Type: application/json
+
+
+###find update
+PUT  http://localhost:3000/api/orders/cancel/3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjYwNjEwODEsImV4cCI6MTc2NjA2ODI4MX0.0ygqUBiNLh9BMP9j83LMWJ3o5L6Y6JG8pe2N9S6T0No
+
+{
+      "status": "cancelled"
 }
