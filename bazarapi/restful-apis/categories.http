@@ -1,0 +1,31 @@
+### crreate category
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjQyMzYxOTcsImV4cCI6MTc2NDI0MzM5N30.Iqn0cTXYcXzPvAelmu7UP8c8V2VxPWfuoGRZ6d2ZkHg
+
+{
+  "title": "category 4",
+  "description": "category details"
+}
+
+### find one
+GET  http://localhost:3000/api/categories/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjQyMzYxOTcsImV4cCI6MTc2NDI0MzM5N30.Iqn0cTXYcXzPvAelmu7UP8c8V2VxPWfuoGRZ6d2ZkHg
+
+
+### find all
+GET http://localhost:3000/api/categories/all
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjQyMzYxOTcsImV4cCI6MTc2NDI0MzM5N30.Iqn0cTXYcXzPvAelmu7UP8c8V2VxPWfuoGRZ6d2ZkHg
+
+
+
+###update category
+PATCH  http://localhost:3000/api/categories/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjQyNjk2ODQsImV4cCI6MTc2NDI3Njg4NH0.wBroVxm3tasKZNWBQJ5anwt5yHkmiNdYMJDPNiEjetw
+
+{
+"title" : "updated category one"
+}

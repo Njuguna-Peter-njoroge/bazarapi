@@ -1,0 +1,38 @@
+### review
+GET http://localhost:3000/api/reviews
+Authorization: 
+
+
+### review
+POST  http://localhost:3000/api/reviews
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjU5NjM1MTMsImV4cCI6MTc2NTk3MDcxM30.BJHRg_mo0wems_DlIquKGTbNmVoCfkjtJ2Jk3uMdIng
+
+{
+      "productId" :4,
+       "ratings" :35, 
+       "comment" : "tewst"
+
+}
+
+### findone
+GET http://localhost:3000/api/reviews/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjU5NTU2NjksImV4cCI6MTc2NTk2Mjg2OX0.1chUTsotsukSoITYxjzJ81_L5y9AkrtMF9buqJAKI8k
+
+
+### find all 
+
+GET http://localhost:3000/api/reviews/all
+
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjU5NTU2NjksImV4cCI6MTc2NTk2Mjg2OX0.1chUTsotsukSoITYxjzJ81_L5y9AkrtMF9buqJAKI8k
+
+
+### findAllByProduct
+GET http://localhost:3000/api/reviews?productId=4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjU5NTU2NjksImV4cCI6MTc2NTk2Mjg2OX0.1chUTsotsukSoITYxjzJ81_L5y9AkrtMF9buqJAKI8k
+
+
+#### remove 
+DELETE http://localhost:3000/api/reviews/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjU5NjYyNTcsImV4cCI6MTc2NTk3MzQ1N30.bn-_ikCqHYJRnvgIdOMQWuZLRBUeSPGroT3A5WxunX0

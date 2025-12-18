@@ -13,10 +13,11 @@ POST http://localhost:3000/api/v1/users
 POST http://localhost:3000/api/users/signup
 Content-Type: application/json
 
-{
-  "name": "John peter Doe",
-  "email": "john@example.com",
-  "password": "securepassword123"
+{ "name": "John",
+  "email": "john12@example.com",
+  "password": "secret1234",
+  "roles": ["USER"]
+
 }
 
 ###signin
@@ -24,14 +25,16 @@ POST http://localhost:3000/api/users/signin
 Content-Type: application/json
 
 {
-  "email": "john@example.com",
-  "password": "securepassword123"
+
+
+  "email": "johnpaul@example.com",
+  "password": "secret123"
 
 }
 ###find all
 GET http://localhost:3000/api/users/all
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJqb2huMjM0NDRAZXhhbXBsZS5jb20iLCJpYXQiOjE3NjQwMTIwNzIsImV4cCI6MTc2NDAxOTI3Mn0.M71kxTHjclTFjCUTzCk8K5wDKMVpIaTjyDH3ZtKfcF8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjQyNjk2ODQsImV4cCI6MTc2NDI3Njg4NH0.wBroVxm3tasKZNWBQJ5anwt5yHkmiNdYMJDPNiEjetw
 
 
 

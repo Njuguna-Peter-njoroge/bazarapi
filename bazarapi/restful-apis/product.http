@@ -1,0 +1,38 @@
+### create a new produxt
+POST http://localhost:3000/api/products
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjQzMTUxNjUsImV4cCI6MTc2NDMyMjM2NX0.auCnVQ6hqvXuwLByCGKWHy02NucVBkToookWDHRjdM8
+
+{
+  "title": "prod title 4",
+  "description": "desc 1",
+  "price": 123.40,
+  "stock": 14,
+  "image": ["path1", "path2", "path3"],
+  "categoriesId" : 1
+}
+
+### findall
+GET http://localhost:3000/api/products
+Content-Type: application/json
+
+
+### findone
+GET http://localhost:3000/api/products/1
+Content-Type: application/json
+
+
+###update
+PATCH http://localhost:3000/api/products/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjQzMTk0MDAsImV4cCI6MTc2NDMyNjYwMH0.AowcIlRY9qUGqnCOhDIYMgY3In2CAKfBo-nb16YcnAk
+
+
+{
+  "title": "prod title 4 good",
+  "description": "desc 1",
+  "price": 123.40,
+  "stock": 14,
+  "image": ["path1", "path2", "path3"],
+  "categoriesId" : 15
+}

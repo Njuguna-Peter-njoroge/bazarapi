@@ -1,0 +1,39 @@
+
+
+
+###create order 
+POST http://localhost:3000/api/orders
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9obnBhdWxAZXhhbXBsZS5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3NjYwNDM2NjgsImV4cCI6MTc2NjA1MDg2OH0.jrj0hax-DFBp-kRLfP_1yDwM2Z9n-peQh_CMkhpceCs
+
+
+{
+      "shippingAddress":{
+            "phone" :"123455640",
+            "name" :"qwwerrwew",
+            "address" : "asads0",
+            "city" :"sdfsdfwefwe",
+            "postcode" :"45435",
+            "state" :"vprgrgrpog",
+            "country" :"us"
+      },
+      "orderProducts":[
+            {
+                  "id" :1,
+                  "product_unit_price" :252.50,
+                  "product_quantity": 2
+            },
+
+
+              {
+                  "id" :2,
+                  "product_unit_price" :256.50,
+                  "product_quantity": 2
+            },
+              {
+                  "id" :3,
+                  "product_unit_price" :272.50,
+                  "product_quantity": 2
+            }
+      ]
+}

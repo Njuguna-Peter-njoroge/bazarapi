@@ -54,8 +54,8 @@ export class UsersService {
     if (!matchPassword) throw new BadRequestException('passwords do not match');
 
     const { password, ...safeUser } = userExist;
-
     const accessToken = this.accessToken(safeUser);
+
 
     return { user: safeUser, accessToken };
   }
@@ -94,7 +94,7 @@ export class UsersService {
   //     process.env.ACCESS_TOKEN_SECRET_KEY,
   //     { expiresIn: process.env.ACCESS_TOKEN_EXPIRES_TIME });
   // }
-  accessToken(user: Pick<UserEntity, 'id' | 'email'>): string {
+  accessToken(user: Pick<UserEntity, 'id' | 'email' | 'roles'>): string {
     const secret = process.env.ACCESS_TOKEN_SECRET_KEY;
 
     if (!secret) {
@@ -115,6 +115,7 @@ export class UsersService {
     const payload = {
       id: user.id,
       email: user.email,
+      roles: user.roles,
     };
 
     return jwt.sign(payload, secret, { expiresIn });
